@@ -1,0 +1,9 @@
+<button
+  (click)="onClick.emit($event)"
+  [ngClass]="[buttonStyleClass, roundedStyleClass, iconButtonStyleClass, color]"
+>
+  @if (icon) {
+  <span [ngClass]="['pi', icon]"></span>
+  }
+  <ng-content></ng-content>
+</button>

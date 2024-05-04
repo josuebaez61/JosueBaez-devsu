@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "./assets/scss/common";
+@import "./assets/scss/spacing";
+@import "./assets/scss/sizing";
+@import "./assets/scss/components";
+@import "./assets/scss/flex";
+@import "./assets/scss/display";
+@import "./assets/scss/text";
+@import "./assets/scss/typo";
+@import "./assets/scss/abstracts";
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f4f6f9;
+}
+
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --tertiary-color: #{$tertiary-color};
+  --border-radius: #{$border-radius};
+  --primary-color-light: color-mix(in srgb, var(--primary-color), #ffffff 15%);
+  --primary-color-lightest: color-mix(
+    in srgb,
+    var(--primary-color),
+    #ffffff 30%
+  );
+  --primary-color-darker: color-mix(in srgb, var(--primary-color), #000 15%);
+  --primary-color-darkest: color-mix(in srgb, var(--primary-color), #000 30%);
+  --item-hover: rgba(0, 0, 0, 0.1);
+  --backdrop: rgba(0, 0, 0, 0.2);
+}

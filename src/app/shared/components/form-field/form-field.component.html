@@ -1,0 +1,11 @@
+<div class="app-form-field" [ngClass]="{ invalid: isInvalid }">
+  <ng-content select="label"></ng-content>
+  <div class="form-control-wrapper">
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="control" class="app-form-field-message-container">
+    @if (isInvalid){
+    <app-form-field-errors [validationErrors]="control.errors" />
+    }
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<table [ngClass]="tableStyleClass">
+  <thead>
+    <ng-container *ngTemplateOutlet="header" ></ng-container>
+  </thead>
+  <tbody>
+    @for (item of data; track $index) {
+      <ng-container *ngTemplateOutlet="body; context: { $implicit: item, index: $index }" ></ng-container>
+    }
+  </tbody>
+</table>
+

@@ -1,0 +1,9 @@
+@import "../../../../assets/scss/abstracts";
+
+header {
+  height: $app-header-height;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

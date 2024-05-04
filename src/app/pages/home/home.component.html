@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="flex justify-content-between">
+    <app-form-field>
+      <input placeholder="Search..." appInputText />
+    </app-form-field>
+    <app-button (onClick)="onCreate()" color="primary"> Agregar </app-button>
+  </div>
+
+  <app-card>
+    <app-card-body>
+      <app-table tableStyleClass="w-100" [data]="products">
+        <ng-template #header>
+          <tr>
+            <th>abc</th>
+            <th>abc</th>
+            <th>abc</th>
+            <th>abc</th>
+            <th>abc</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-item let-index="index">
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.date_release | date : "dd/MM/YYYY" }}</td>
+            <td>{{ item.date_revision | date : "dd/MM/YYYY" }}</td>
+            <td>
+              <app-popup-menu #menu [menu]="getPopupMenuItems(item)" />
+              <app-icon-button
+                (onClick)="menu.toggle($event)"
+                icon="pi pi-ellipsis-v"
+                [rounded]="true"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </app-table>
+      <app-paginator />
+    </app-card-body>
+  </app-card>
+</div>

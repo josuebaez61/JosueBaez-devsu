@@ -1,0 +1,11 @@
+.app-fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  &.has-backdrop {
+    background-color: var(--backdrop);
+  }
+}

@@ -1,0 +1,10 @@
+@for $i from 0 through 10 {
+  $value: $i * 10;
+
+  .w-#{$value} {
+    width: #{$value}#{"%"};
+  }
+  .h-#{$value} {
+    width: #{$value}#{"%"};
+  }
+}

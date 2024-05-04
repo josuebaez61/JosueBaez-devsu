@@ -1,0 +1,19 @@
+@if (visible) {
+<app-fullscreen-overlay [showBackdrop]="false" (onClick)="visible = false">
+  <div class="app-popup-menu" [style]="transformStyle">
+    <app-card className="app-menu">
+      <app-card-body>
+        <app-list>
+          @for (item of menu; track $index) {
+          <app-list-item
+            [ngClass]="item.onClick ? 'pointer' : ''"
+            (onClick)="item.onClick && item.onClick()"
+            >{{ item.label }}</app-list-item
+          >
+          }
+        </app-list>
+      </app-card-body>
+    </app-card>
+  </div>
+</app-fullscreen-overlay>
+}

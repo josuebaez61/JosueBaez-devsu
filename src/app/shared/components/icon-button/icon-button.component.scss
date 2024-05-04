@@ -1,0 +1,16 @@
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--border-radius);
+
+  &:hover {
+    background-color: var(--item-hover);
+  }
+
+  &.rounded {
+    border-radius: 50%;
+  }
+}

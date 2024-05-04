@@ -1,0 +1,14 @@
+::ng-deep .app-popup-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .app-card-body {
+    padding: 0 !important;
+  }
+  .app-menu {
+    width: auto;
+    display: inline-block;
+    border: 1px solid var(--secondary-color);
+  }
+}

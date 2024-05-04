@@ -1,0 +1,22 @@
+::ng-deep table {
+  border-spacing: 0;
+  thead {
+    background-color: var(--secondary-color);
+    th {
+      border-bottom: 1px solid var(--tertiary-color);
+    }
+  }
+  tbody {
+    td {
+      border-bottom: 1px solid var(--secondary-color);
+    }
+  }
+  th,
+  td {
+    text-align: start;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

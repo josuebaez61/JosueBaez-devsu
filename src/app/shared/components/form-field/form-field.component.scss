@@ -1,0 +1,28 @@
+::ng-deep.app-form-field {
+  padding: 0.5rem;
+
+  label {
+    font-weight: bold;
+  }
+
+  .form-control-wrapper {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &.invalid {
+    input,
+    select,
+    textarea {
+      border: 2px solid red;
+
+      &:focus-visible {
+        border-color: red;
+      }
+    }
+  }
+
+  .app-form-field-message-container {
+    height: 2rem;
+  }
+}

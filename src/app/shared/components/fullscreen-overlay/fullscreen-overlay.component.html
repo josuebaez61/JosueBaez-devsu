@@ -1,0 +1,7 @@
+<div
+  class="app-fullscreen-overlay"
+  [ngClass]="[className, showBackdrop ? 'has-backdrop' : '']"
+  (click)="onClick.emit()"
+>
+  <ng-content />
+</div>
