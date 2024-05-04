@@ -1,15 +1,14 @@
 <div class="app-paginator flex justify-content-between align-items-center">
-  <p>5 resultados</p>
-  <div><select name="" id="" appInputText>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-    <option>a</option>
-  </select></div>
+  <p>{{ totalFilteredItems }} resultados</p>
+  <div>
+    <select
+      [ngModel]="perPage"
+      (ngModelChange)="perPageChange.emit($event)"
+      appInputText
+    >
+      @for (option of perPageOptions; track $index) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
 </div>

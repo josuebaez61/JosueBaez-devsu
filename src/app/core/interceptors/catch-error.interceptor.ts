@@ -6,7 +6,6 @@ export const catchErrorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
       if (error instanceof HttpErrorResponse) {
       }
-
       return throwError(() => error);
     })
   );

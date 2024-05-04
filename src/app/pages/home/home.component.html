@@ -1,27 +1,34 @@
 <div class="container">
-  <div class="flex justify-content-between">
+  <div class="flex justify-content-between align-items-center">
     <app-form-field>
-      <input placeholder="Search..." appInputText />
+      <input
+        #input
+        (keyup)="onFilter(input.value)"
+        placeholder="Search..."
+        appInputText
+      />
     </app-form-field>
     <app-button (onClick)="onCreate()" color="primary"> Agregar </app-button>
   </div>
 
   <app-card>
     <app-card-body>
-      <app-table tableStyleClass="w-100" [data]="products">
+      <app-table tableStyleClass="w-100" [data]="filteredProducts">
         <ng-template #header>
           <tr>
-            <th>abc</th>
-            <th>abc</th>
-            <th>abc</th>
-            <th>abc</th>
-            <th>abc</th>
+            <th>Logo</th>
+            <th>Nombre del producto</th>
+            <th>Descripción</th>
+            <th>Fecha de liberación</th>
+            <th>Fecha de restructuración</th>
             <th></th>
           </tr>
         </ng-template>
         <ng-template #body let-item let-index="index">
           <tr>
-            <td>{{ item.id }}</td>
+            <td>
+              <app-avatar [src]="item.logo" [alt]="item.name" />
+            </td>
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.date_release | date : "dd/MM/YYYY" }}</td>
@@ -37,7 +44,11 @@
           </tr>
         </ng-template>
       </app-table>
-      <app-paginator />
+      <app-paginator
+        [totalItems]="products.length"
+        [totalFilteredItems]="filteredProducts.length"
+        (perPageChange)="onPerPageChange($event)"
+      />
     </app-card-body>
   </app-card>
 </div>

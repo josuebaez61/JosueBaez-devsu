@@ -5,14 +5,16 @@
 >
   <app-card>
     <app-card-body>
-      <p [innerHTML]="data.message"></p>
+      <p [innerHTML]="data.message || '¿Está seguro?'"></p>
     </app-card-body>
     <app-card-footer>
       <div class="flex justify-content-end" style="gap: 0.5rem">
         <app-button (onClick)="onCancel()" color="secondary"
           >Cancelar</app-button
         >
-        <app-button>Confirmar</app-button>
+        <app-button (onClick)="data.onConfirm && data.onConfirm()"
+          >Confirmar</app-button
+        >
       </div>
     </app-card-footer>
   </app-card>

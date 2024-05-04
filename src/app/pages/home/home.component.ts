@@ -14,6 +14,8 @@ import { IconButtonComponent } from '../../shared/components/icon-button/icon-bu
 import { MenuItem, Product } from '../../core/models';
 import { Router } from '@angular/router';
 import { ConfirmService } from '../../core/services/confirm.service';
+import { AvatarComponent } from '../../shared/components/avatar/avatar.component';
+import { InputTextDirective } from '../../shared/directives/input-text.directive';
 
 @Component({
   selector: 'app-home',
@@ -28,12 +30,15 @@ import { ConfirmService } from '../../core/services/confirm.service';
     PaginatorComponent,
     PopupMenuComponent,
     IconButtonComponent,
+    AvatarComponent,
+    InputTextDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  products: any[] = [];
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
 
   constructor(
     private productsService: ProductsService,
@@ -43,7 +48,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.productsService.getProducts().subscribe({
-      next: (p) => (this.products = p),
+      next: (p) => {
+        this.products = p;
+        this.filteredProducts = p;
+      },
     });
   }
 
@@ -52,7 +60,8 @@ export class HomeComponent implements OnInit {
       new MenuItem({
         label: 'Editar',
         onClick: () => {
-          this.router.navigate(['edit', product.id]);
+          this.router.navigate(['edit']);
+          this.productsService.editingProduct = product;
         },
       }),
       new MenuItem({
@@ -60,10 +69,28 @@ export class HomeComponent implements OnInit {
         onClick: () => {
           this.confirmService.open({
             message: `¿Estas seguro de eliminar el producto <b>${product.name}</b>?`,
+            onConfirm: () => {
+              this.productsService
+                .deleteProduct(product.id)
+                .subscribe(console.log);
+            },
           });
         },
       }),
     ];
+  }
+
+  onFilter(val: string): void {
+    this.filteredProducts = this.products.filter((p) =>
+      p.name.toLowerCase().includes(val.toLowerCase())
+    );
+  }
+
+  onPerPageChange(val: number | string): void {
+    this.filteredProducts = this.products;
+    const perPage = parseInt(String(val));
+    const newArray = [...this.filteredProducts];
+    this.filteredProducts = newArray.slice(0, perPage);
   }
 
   onCreate(): void {

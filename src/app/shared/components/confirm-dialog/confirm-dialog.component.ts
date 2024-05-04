@@ -10,6 +10,7 @@ import {
 import { ButtonComponent } from '../button/button.component';
 import { ConfirmService } from '../../../core/services/confirm.service';
 import { Observable } from 'rxjs';
+import { ConfirmDialogData } from '../../../core/models/confirm';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -28,7 +29,7 @@ import { Observable } from 'rxjs';
 })
 export class ConfirmDialogComponent {
   visible$: Observable<boolean>;
-  data$: Observable<{ message: string }>;
+  data$: Observable<ConfirmDialogData | null>;
 
   constructor(private confirmService: ConfirmService) {
     this.visible$ = this.confirmService.visible$;

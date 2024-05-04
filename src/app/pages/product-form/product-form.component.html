@@ -1,7 +1,7 @@
 <div class="container">
   <app-card>
     <app-card-header>
-      <h1 class="text-center">Producto</h1>
+      <h1 class="text-center">Formulario de registro</h1>
     </app-card-header>
     <app-card-body>
       <form [formGroup]="formGroup">
@@ -16,7 +16,12 @@
           </app-form-field>
           <app-form-field class="w-100">
             <label for="id">Fecha de liberacion</label>
-            <input formControlName="date_release" class="w-100" appInputText />
+            <input
+              formControlName="date_release"
+              type="date"
+              class="w-100"
+              appInputText
+            />
           </app-form-field>
         </div>
         <div>
@@ -30,17 +35,22 @@
           </app-form-field>
           <app-form-field class="w-100">
             <label for="id">Fecha de revision</label>
-            <input formControlName="date_revision" class="w-100" appInputText />
+            <input
+              formControlName="date_revision"
+              type="date"
+              class="w-100"
+              appInputText
+            />
           </app-form-field>
         </div>
       </form>
     </app-card-body>
     <app-card-footer>
-      <div class="text-center">
+      <div class="flex justify-content-center" style="gap: 0.5rem">
         <app-button (onClick)="onCancel()" color="secondary"
           >Cancelar</app-button
         >
-        <app-button>Confirmar</app-button>
+        <app-button (onClick)="onSubmit()">Confirmar</app-button>
       </div>
     </app-card-footer>
   </app-card>

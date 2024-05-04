@@ -19,6 +19,9 @@ export class ButtonComponent {
   rounded = false;
 
   @Input()
+  type = 'button';
+
+  @Input()
   iconButton = false;
 
   @Input()
