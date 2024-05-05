@@ -13,7 +13,7 @@ import { ToastService } from './toast.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  private readonly baseUrl = `${environment.apiUrl}/bp/products`;
+  readonly baseUrl = `${environment.apiUrl}/bp/products`;
 
   editingProduct: Product | null = null;
 

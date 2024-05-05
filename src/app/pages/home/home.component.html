@@ -34,8 +34,8 @@
             </td>
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
-            <td>{{ item.date_release | date : "dd/MM/YYYY" }}</td>
-            <td>{{ item.date_revision | date : "dd/MM/YYYY" }}</td>
+            <td>{{ item.formatedDateRelease | date : "dd/MM/YYYY" }}</td>
+            <td>{{ item.formatedDateRevision | date : "dd/MM/YYYY" }}</td>
             <td>
               <app-popup-menu #menu [menu]="getPopupMenuItems(item)" />
               <app-icon-button

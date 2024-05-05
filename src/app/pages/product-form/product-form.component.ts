@@ -17,7 +17,7 @@ import {
 import { Router } from '@angular/router';
 import { ProductsService } from '../../core/services/products.service';
 import { Subscription } from 'rxjs';
-import { minDateValidator, productIdValidator } from '../../core/utils';
+import { minDateValidator, productIdValidator, toUTC } from '../../core/utils';
 
 @Component({
   selector: 'app-product-form',
@@ -74,7 +74,15 @@ export class ProductFormComponent implements OnDestroy, OnInit {
     });
 
     if (this.productsService.editingProduct) {
-      this.formGroup.patchValue(this.productsService.editingProduct);
+      this.formGroup.patchValue(this.productsService.editingProduct, {
+        emitEvent: false,
+      });
+      this.formGroup
+        .get('date_release')
+        ?.patchValue(this.productsService.editingProduct.formatedDateRelease);
+      this.formGroup
+        .get('date_revision')
+        ?.patchValue(this.productsService.editingProduct.formatedDateRevision);
       this.formGroup.get('id')?.disable();
     }
   }
@@ -98,14 +106,21 @@ export class ProductFormComponent implements OnDestroy, OnInit {
   }
 
   get dateRevisionMinDate() {
-    const dateReleaseSplitted = this.formGroup
-      .get('date_release')
-      ?.value.split('-');
-    const releaseYear = dateReleaseSplitted[0];
-    const nextYear = parseInt(releaseYear) + 1;
-    return (
-      nextYear + '-' + dateReleaseSplitted[1] + '-' + dateReleaseSplitted[2]
-    );
+    const dateReleaseValue = this.formGroup.get('date_release')?.value;
+
+    if (dateReleaseValue) {
+      const dateReleaseDate = toUTC(new Date(dateReleaseValue));
+      return `${dateReleaseDate.getFullYear() + 1}-${(
+        dateReleaseDate.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, '0')}-${dateReleaseDate
+        .getDate()
+        .toString()
+        .padStart(2, '0')}`;
+    }
+
+    return '';
   }
 
   get formGroupIsPending(): boolean {

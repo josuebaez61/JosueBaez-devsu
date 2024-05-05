@@ -1,5 +1,5 @@
 @for $i from 0 through 10 {
-  $value: $i / 2;
+  $value: calc($i / 2);
 
   .mr-#{$i} {
     margin-right: #{$value}rem;
