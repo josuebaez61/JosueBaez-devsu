@@ -12,9 +12,7 @@
         <app-button (onClick)="onCancel()" color="secondary"
           >Cancelar</app-button
         >
-        <app-button (onClick)="data.onConfirm && data.onConfirm()"
-          >Confirmar</app-button
-        >
+        <app-button (onClick)="onConfirm(data.onConfirm)">Confirmar</app-button>
       </div>
     </app-card-footer>
   </app-card>

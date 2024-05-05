@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ContentChild, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  Input,
+  TemplateRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -11,20 +17,16 @@ import { AfterViewInit, Component, ContentChild, Input } from '@angular/core';
     ngSkipHydration: 'true',
   },
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent {
   @Input()
   data: any[] = [];
 
   @Input()
-  tableStyleClass = '';
+  className = '';
 
   @ContentChild('header')
-  header: any;
+  header!: TemplateRef<unknown>;
 
   @ContentChild('body')
-  body: any;
-
-  ngAfterViewInit(): void {
-    console.log(this.body);
-  }
+  body!: TemplateRef<unknown>;
 }

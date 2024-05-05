@@ -17,6 +17,7 @@ import { ConfirmService } from '../../core/services/confirm.service';
 import { AvatarComponent } from '../../shared/components/avatar/avatar.component';
 import { InputTextDirective } from '../../shared/directives/input-text.directive';
 import { ScrollXDirective } from '../../shared/directives';
+import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ import { ScrollXDirective } from '../../shared/directives';
     PopupMenuComponent,
     IconButtonComponent,
     AvatarComponent,
+    SpinnerComponent,
     InputTextDirective,
     ScrollXDirective,
   ],
@@ -41,6 +43,7 @@ import { ScrollXDirective } from '../../shared/directives';
 export class HomeComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
+  isLoading = false;
 
   constructor(
     private productsService: ProductsService,
@@ -49,10 +52,18 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts(): void {
+    this.isLoading = true;
     this.productsService.getProducts().subscribe({
       next: (p) => {
         this.products = p;
         this.filteredProducts = p;
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
@@ -72,9 +83,11 @@ export class HomeComponent implements OnInit {
           this.confirmService.open({
             message: `¿Estas seguro de eliminar el producto <b>${product.name}</b>?`,
             onConfirm: () => {
-              this.productsService
-                .deleteProduct(product.id)
-                .subscribe(console.log);
+              this.productsService.deleteProduct(product.id).subscribe({
+                next: () => {
+                  this.getProducts();
+                },
+              });
             },
           });
         },

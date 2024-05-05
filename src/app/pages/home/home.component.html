@@ -2,18 +2,21 @@
   <div class="flex justify-content-between align-items-center">
     <app-form-field>
       <input
+        [disabled]="isLoading"
         #input
         (keyup)="onFilter(input.value)"
         placeholder="Search..."
         appInputText
       />
     </app-form-field>
-    <app-button (onClick)="onCreate()" color="primary"> Agregar </app-button>
+    <app-button (onClick)="onCreate()" color="primary" [disabled]="isLoading">
+      Agregar
+    </app-button>
   </div>
 
   <app-card>
     <app-card-body ngSkipHydration>
-      <app-table tableStyleClass="w-100" [data]="filteredProducts" appScrollX>
+      <app-table className="w-100" [data]="filteredProducts" appScrollX>
         <ng-template #header>
           <tr>
             <th>Logo</th>
@@ -44,11 +47,17 @@
           </tr>
         </ng-template>
       </app-table>
+      @if (isLoading) {
+      <div class="flex justify-content-center py-5">
+        <app-spinner />
+      </div>
+      } @else {
       <app-paginator
         [totalItems]="products.length"
         [totalFilteredItems]="filteredProducts.length"
         (perPageChange)="onPerPageChange($event)"
       />
+      }
     </app-card-body>
   </app-card>
 </div>

@@ -1,3 +1,16 @@
 .app-padding {
   padding: 2rem;
 }
+
+@for $i from 0 through 10 {
+  $value: $i / 2;
+
+  .py-#{$i} {
+    padding-top: #{$value}rem;
+    padding-bottom: #{$value}rem;
+  }
+  .px-#{$i} {
+    padding-left: #{$value}rem;
+    padding-right: #{$value}rem;
+  }
+}

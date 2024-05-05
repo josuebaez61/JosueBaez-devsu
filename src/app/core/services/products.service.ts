@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { map, Observable, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   CreateProductPayload,
   CreateProductResponse,
@@ -28,7 +28,10 @@ export class ProductsService {
   createProduct(payload: CreateProductPayload): Observable<Product> {
     return this.http
       .post<CreateProductResponse>(`${this.baseUrl}`, payload)
-      .pipe(map(Product.create));
+      .pipe(
+        map(Product.create),
+        tap(() => this.toastService.showSuccessfullySaved())
+      );
   }
 
   updateProduct(payload: CreateProductPayload): Observable<Product> {
@@ -39,6 +42,17 @@ export class ProductsService {
   }
 
   deleteProduct(id: string): Observable<string> {
-    return this.http.delete<string>(`${this.baseUrl}?id=${id}`);
+    return this.http
+      .delete<string>(`${this.baseUrl}?id=${id}`, {
+        responseType: 'text' as 'json',
+      })
+      .pipe(
+        tap(() =>
+          this.toastService.show({
+            message: '¡Eliminado!',
+            severity: 'success',
+          })
+        )
+      );
   }
 }

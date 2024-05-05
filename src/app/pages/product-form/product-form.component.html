@@ -50,7 +50,9 @@
         <app-button (onClick)="onCancel()" color="secondary"
           >Cancelar</app-button
         >
-        <app-button (onClick)="onSubmit()">Confirmar</app-button>
+        <app-button [loading]="isLoading" (onClick)="onSubmit()"
+          >Confirmar</app-button
+        >
       </div>
     </app-card-footer>
   </app-card>

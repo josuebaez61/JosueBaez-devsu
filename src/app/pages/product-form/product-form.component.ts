@@ -35,6 +35,7 @@ import { ProductsService } from '../../core/services/products.service';
 })
 export class ProductFormComponent implements OnDestroy {
   formGroup: FormGroup;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -76,9 +77,16 @@ export class ProductFormComponent implements OnDestroy {
         ? this.productsService.updateProduct(this.formGroup.getRawValue())
         : this.productsService.createProduct(this.formGroup.getRawValue());
 
+      this.isLoading = true;
+
+      this.formGroup.disable();
+
       obs$.subscribe({
         next: () => {
           this.router.navigate(['']);
+        },
+        complete: () => {
+          this.isLoading = false;
         },
       });
     }

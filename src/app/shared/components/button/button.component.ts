@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SpinnerComponent],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
 })
@@ -22,10 +23,13 @@ export class ButtonComponent {
   type = 'button';
 
   @Input()
+  disabled = false;
+
+  @Input()
   iconButton = false;
 
   @Input()
-  icon = '';
+  loading = false;
 
   @Output()
   onClick = new EventEmitter<MouseEvent>();

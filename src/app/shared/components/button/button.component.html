@@ -1,10 +1,11 @@
 <button
+  [disabled]="disabled || loading"
   (click)="onClick.emit($event)"
   [ngClass]="[buttonStyleClass, roundedStyleClass, iconButtonStyleClass, color]"
   [type]="type"
 >
-  @if (icon) {
-  <span [ngClass]="['pi', icon]"></span>
-  }
+  <span *ngIf="loading" class="inline-block mr-1">
+    <app-spinner [size]="1" />
+  </span>
   <ng-content></ng-content>
 </button>

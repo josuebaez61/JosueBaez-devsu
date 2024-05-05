@@ -39,4 +39,9 @@ export class ConfirmDialogComponent {
   onCancel(): void {
     this.confirmService.close();
   }
+
+  onConfirm(cb?: () => void): void {
+    this.confirmService.close();
+    cb && cb();
+  }
 }
