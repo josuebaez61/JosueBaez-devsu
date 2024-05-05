@@ -12,8 +12,8 @@
   </div>
 
   <app-card>
-    <app-card-body>
-      <app-table tableStyleClass="w-100" [data]="filteredProducts">
+    <app-card-body ngSkipHydration>
+      <app-table tableStyleClass="w-100" [data]="filteredProducts" appScrollX>
         <ng-template #header>
           <tr>
             <th>Logo</th>

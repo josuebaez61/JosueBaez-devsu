@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { ConfirmService } from '../../core/services/confirm.service';
 import { AvatarComponent } from '../../shared/components/avatar/avatar.component';
 import { InputTextDirective } from '../../shared/directives/input-text.directive';
+import { ScrollXDirective } from '../../shared/directives';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ import { InputTextDirective } from '../../shared/directives/input-text.directive
     IconButtonComponent,
     AvatarComponent,
     InputTextDirective,
+    ScrollXDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

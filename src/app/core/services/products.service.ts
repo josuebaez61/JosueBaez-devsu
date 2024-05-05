@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
   CreateProductPayload,
@@ -9,6 +9,7 @@ import {
   IProduct,
   Product,
 } from '../models';
+import { ToastService } from './toast.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
@@ -16,7 +17,7 @@ export class ProductsService {
 
   editingProduct: Product | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastService: ToastService) {}
 
   getProducts(): Observable<Product[]> {
     return this.http
@@ -31,9 +32,10 @@ export class ProductsService {
   }
 
   updateProduct(payload: CreateProductPayload): Observable<Product> {
-    return this.http
-      .put<IProduct>(`${this.baseUrl}`, payload)
-      .pipe(map(Product.create));
+    return this.http.put<IProduct>(`${this.baseUrl}`, payload).pipe(
+      map(Product.create),
+      tap(() => this.toastService.showSuccessfullySaved())
+    );
   }
 
   deleteProduct(id: string): Observable<string> {

@@ -6,3 +6,4 @@ export * from './paginator/paginator.component';
 export * from './table/table.component';
 export * from './popup-menu/popup-menu.component';
 export * from './list/list.component';
+export * from './toast/toast.component';

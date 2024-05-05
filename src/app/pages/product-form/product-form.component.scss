@@ -1,5 +1,12 @@
+@import "../../../assets/scss/abstracts/";
+
 form {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100%;
   gap: 1rem;
+  gap: 0rem 1rem;
+
+  @include respond-to(md) {
+    grid-template-columns: 50% 50%;
+  }
 }

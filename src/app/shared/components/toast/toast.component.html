@@ -1,0 +1,9 @@
+@if (toastMessage$ | async; as message) {
+<div class="app-toast" [ngClass]="message.severity">
+  <app-card>
+    <app-card-body>
+      {{ message.message }}
+    </app-card-body>
+  </app-card>
+</div>
+}

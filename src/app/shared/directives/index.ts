@@ -1,3 +1,2 @@
-import { InputTextDirective } from './input-text.directive';
-
-export default [InputTextDirective];
+export * from './input-text.directive';
+export * from './scrollable-table.directive';

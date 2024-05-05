@@ -37,4 +37,7 @@ body {
   --primary-color-darkest: color-mix(in srgb, var(--primary-color), #000 30%);
   --item-hover: rgba(0, 0, 0, 0.1);
   --backdrop: rgba(0, 0, 0, 0.2);
+  --success-color: rgb(0, 195, 13);
+  --error-color: rgb(255, 47, 0);
+  --warning-color: rgb(255, 191, 0);
 }

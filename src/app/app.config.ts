@@ -9,11 +9,15 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { authorIdInterceptor } from './core/interceptors/author-id.interceptor';
+import { catchErrorInterceptor } from './core/interceptors/catch-error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(withFetch(), withInterceptors([authorIdInterceptor])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([authorIdInterceptor, catchErrorInterceptor])
+    ),
   ],
 };
