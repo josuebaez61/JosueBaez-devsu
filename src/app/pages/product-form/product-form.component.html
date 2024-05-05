@@ -20,6 +20,8 @@
               formControlName="date_release"
               type="date"
               class="w-100"
+              valueAsDate
+              [min]="dateReleaseMinDate"
               appInputText
             />
           </app-form-field>
@@ -39,6 +41,8 @@
               formControlName="date_revision"
               type="date"
               class="w-100"
+              [min]="dateRevisionMinDate"
+              valueAsDate
               appInputText
             />
           </app-form-field>
@@ -47,12 +51,16 @@
     </app-card-body>
     <app-card-footer>
       <div class="flex justify-content-center" style="gap: 0.5rem">
-        <app-button (onClick)="onCancel()" color="secondary"
-          >Cancelar</app-button
+        <app-button (onClick)="formGroup.reset()" color="secondary"
+          >Reiniciar</app-button
         >
-        <app-button [loading]="isLoading" (onClick)="onSubmit()"
-          >Confirmar</app-button
+        <app-button
+          [loading]="isLoading || formGroupIsPending"
+          (onClick)="onSubmit()"
         >
+          @if (isLoading) { Guardando } @else if (formGroupIsPending) {
+          Validando } @else { Confirmar }
+        </app-button>
       </div>
     </app-card-footer>
   </app-card>

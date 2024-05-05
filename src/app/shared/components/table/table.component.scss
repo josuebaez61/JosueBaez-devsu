@@ -3,12 +3,12 @@
   thead {
     background-color: var(--secondary-color);
     th {
-      border-bottom: 1px solid var(--tertiary-color);
+      border-bottom: 2px solid var(--secondary-color-darker);
     }
   }
   tbody {
     td {
-      border-bottom: 1px solid var(--secondary-color);
+      border-bottom: 1.5px solid var(--secondary-color);
     }
   }
   th,

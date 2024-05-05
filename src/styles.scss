@@ -23,9 +23,9 @@ body {
 }
 
 :root {
-  --primary-color: #{$primary-color};
-  --secondary-color: #{$secondary-color};
-  --tertiary-color: #{$tertiary-color};
+  --primary-color: #f5df66;
+  --secondary-color: #f4f6f9;
+  --tertiary-color: #6f6f74;
   --border-radius: #{$border-radius};
   --primary-color-light: color-mix(in srgb, var(--primary-color), #ffffff 15%);
   --primary-color-lightest: color-mix(
@@ -34,6 +34,11 @@ body {
     #ffffff 30%
   );
   --primary-color-darker: color-mix(in srgb, var(--primary-color), #000 15%);
+  --secondary-color-darker: color-mix(
+    in srgb,
+    var(--secondary-color),
+    #000 15%
+  );
   --primary-color-darkest: color-mix(in srgb, var(--primary-color), #000 30%);
   --item-hover: rgba(0, 0, 0, 0.1);
   --backdrop: rgba(0, 0, 0, 0.2);

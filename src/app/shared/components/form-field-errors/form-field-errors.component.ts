@@ -16,19 +16,22 @@ export class FormFieldErrorsComponent {
   get validationErrorMessages(): string {
     let message = '';
 
-    const errorMessages: Record<string, string> = {
-      required: 'Este campo es requerido',
-    };
-
     if (this.validationErrors) {
       for (const key in this.validationErrors) {
         if (Object.prototype.hasOwnProperty.call(this.validationErrors, key)) {
           const element = this.validationErrors[key];
+          const errorMessages: Record<string, string> = {
+            required: 'Este campo es requerido',
+            minlength: `Debe tener al menos ${element['requiredLength']} caracteres`,
+            maxlength: `No debe superar los ${element['requiredLength']} caracteres`,
+            minDate: 'Fecha inválida',
+            productIdExists: 'Este ID está registrado y no puede repetirse',
+          };
           message += errorMessages[key] + '. ';
         }
       }
     }
 
-    return message;
+    return message.trim();
   }
 }

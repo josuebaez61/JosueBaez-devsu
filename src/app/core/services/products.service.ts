@@ -55,4 +55,8 @@ export class ProductsService {
         )
       );
   }
+
+  existsProduct(id: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.baseUrl}/verification?id=${id}`);
+  }
 }
