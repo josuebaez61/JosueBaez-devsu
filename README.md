@@ -2,6 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
 
+### Checklist (Microservicios y Funcionalidades)
+
+- ✅ F1 - Listado de productos financieros
+- ✅ F2 - Busqueda de productos financieros
+- ✅ F3 - Cantidad de registros
+- ✅ F4 - Agregar producto
+- ✅ F5 - Editar producto
+- ✅ F6 - Eliminar producto
+
 ## Requeriments
 
 - [NodeJS 18](https://nodejs.org/en/download)
@@ -35,6 +44,17 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+#### Coverage
+
+Run `ng test --code-coverage`.
+
+Current coverage:
+
+- Statements : 77.35% ( 205/265 )
+- Branches : 54.54% ( 18/33 )
+- Functions : 69.31% ( 61/88 )
+- Lines : 77.01% ( 191/248 )
 
 ## Running end-to-end tests
 
