@@ -6,7 +6,7 @@ button {
   height: 3rem;
   border-radius: var(--border-radius);
 
-  &:hover {
+  &:hover:not([disabled]) {
     background-color: var(--item-hover);
   }
 

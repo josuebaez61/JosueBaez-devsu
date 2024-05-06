@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { editingProductGuard } from './core/guards/editing-product.guard';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
       },
       {
         path: 'edit',
+        canActivate: [editingProductGuard],
         loadComponent: () =>
           import('./pages/product-form/product-form.component').then(
             (c) => c.ProductFormComponent

@@ -1,6 +1,8 @@
 <button
   (click)="onClick.emit($event)"
+  [disabled]="disabled"
   [ngClass]="[className, rounded ? 'rounded' : '']"
+  type="button"
 >
   <i [ngClass]="[icon]"></i>
 </button>

@@ -17,6 +17,9 @@ export class IconButtonComponent {
   @Input()
   rounded = false;
 
+  @Input()
+  disabled = false;
+
   @Output()
   onClick = new EventEmitter<MouseEvent>();
 }

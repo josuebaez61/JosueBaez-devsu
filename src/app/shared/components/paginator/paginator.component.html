@@ -1,13 +1,29 @@
 <div class="app-paginator flex justify-content-between align-items-center">
-  <p>{{ totalFilteredItems }} resultados</p>
+  <p>{{ totalItems }} resultados</p>
   <div>
-    <select
-      [ngModel]="perPage"
-      (ngModelChange)="perPageChange.emit($event)"
-      appInputText
-    >
+    <div class="inline-block mr-2">
+      <app-icon-button
+        (onClick)="onPrevPage()"
+        icon="pi pi-chevron-left"
+        [rounded]="true"
+        [disabled]="offset === 0"
+      ></app-icon-button>
+    </div>
+
+    <div class="inline-block mr-2">
+      <app-icon-button
+        (onClick)="onNextPage()"
+        icon="pi pi-chevron-right"
+        [rounded]="true"
+        [disabled]="!hasNext"
+      ></app-icon-button>
+    </div>
+
+    <select (change)="onItemsPerPageChange($event)" appInputText>
       @for (option of perPageOptions; track $index) {
-      <option [value]="option">{{ option }}</option>
+      <option [selected]="option === limit" [value]="option">
+        {{ option }}
+      </option>
       }
     </select>
   </div>
